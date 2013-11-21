@@ -86,7 +86,7 @@ module.exports = function(grunt) {
             if (exports) {
               source += '\t';
             }
-            source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' })';
+            source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' });';
             if (exports) {
               source += '})(this);';
             }
