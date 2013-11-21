@@ -56,7 +56,7 @@ module.exports = function(grunt) {
           moduleName = namespace + '/' + moduleName;
         }
         
-        moduleName = options.processName(moduleName);
+        moduleName = options.processName(moduleName, path.basename(moduleName));
         
         var quotes = (options.doubleQuotes) ? '"' : '\'';
         
