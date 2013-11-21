@@ -44,11 +44,11 @@ module.exports = function(grunt) {
         var source = grunt.file.read(filepath);
         var extension = path.extname(filepath);
         var moduleName = filepath.split(extension)[0];
-        if (options.base) {
+        if (options.base && moduleName.indexOf(options.base) === 0) {
           moduleName = moduleName.split(options.base)[1];
         }
         
-        if (options.normalizeIndexFile) {
+        if (options.normalizeIndexFile && moduleName.indexOf('/index') > 0) {
           moduleName = moduleName.replace('/index', '');
         }
         
@@ -63,31 +63,33 @@ module.exports = function(grunt) {
         if (source.indexOf('define([') >= 0 || source.indexOf('define(function') >= 0 || source.indexOf('define({') >= 0) {
           source = source.replace('define(', 'define(' + quotes + moduleName + quotes +', ');
         } else {
-          var deps = '';
-          var exports = '';
-          
-          if (options.shims[moduleName]) {
-            if (options.shims[moduleName].deps) {
-              deps = '[' + options.shims[moduleName].deps.join(', ') + '], ';
-            }
+          if (source.indexOf('define(') === -1) {
+            var deps = '';
+            var exports = '';
             
-            if (options.shims[moduleName].exports) {
-              exports = 'return root.' + options.shims[moduleName].exports + ';';
+            if (options.shims[moduleName]) {
+              if (options.shims[moduleName].deps) {
+                deps = '[' + options.shims[moduleName].deps.join(', ') + '], ';
+              }
+              
+              if (options.shims[moduleName].exports) {
+                exports = 'return root.' + options.shims[moduleName].exports + ';';
+              }
+            } 
+            
+            source += '\n';
+            
+            if (exports) {
+              source += '\n(function(root) {';
             }
-          } 
-          
-          source += '\n';
-          
-          if (exports) {
-            source += '\n(function(root) {';
-          }
-          source += '\n';
-          if (exports) {
-            source += '\t';
-          }
-          source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' })';
-          if (exports) {
-            source += '})(this);';
+            source += '\n';
+            if (exports) {
+              source += '\t';
+            }
+            source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' })';
+            if (exports) {
+              source += '})(this);';
+            }
           }
         }
         
