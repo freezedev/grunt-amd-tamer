@@ -84,6 +84,8 @@ module.exports = function(grunt) {
         return source;
       }).join(grunt.util.normalizelf(options.separator));
       
+      var modules = options.modules;
+      
       var moduleKeys = Object.keys(modules);
       
       for (var i = 0, j = moduleKeys.length; i < j; i++) {
