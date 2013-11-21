@@ -20,6 +20,10 @@ module.exports = function(grunt) {
       normalizeIndexFile: true,
       base: null,
       doubleQuotes: false,
+      namespace: null,
+      processName: function(name) {
+        return name;
+      },
       shims: {},
       modules: {}
     });
@@ -46,6 +50,10 @@ module.exports = function(grunt) {
         
         if (options.normalizeIndexFile) {
           moduleName = moduleName.replace('/index', '');
+        }
+        
+        if (options.namespace) {
+          moduleName = namespace + '/' + moduleName;
         }
         
         var quotes = (options.doubleQuotes) ? '"' : '\'';
