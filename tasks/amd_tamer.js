@@ -53,7 +53,32 @@ module.exports = function(grunt) {
         if (source.indexOf('define([') >= 0 || source.indexOf('define(function') >= 0 || source.indexOf('define({') >= 0) {
           source = source.replace('define(', 'define(' + quotes + moduleName + quotes +', ');
         } else {
-          source += '\n\ndefine(' + quotes + moduleName + quotes + ', function() {})';
+          var deps = '';
+          var exports = '';
+          
+          if (options.shims[moduleName]) {
+            if (options.shims[moduleName].deps) {
+              deps = '[' + options.shims[moduleName].deps.join(', ') + '], ';
+            }
+            
+            if (options.shims[moduleName].exports) {
+              exports = 'return root.' + options.shims[moduleName].exports + ';';
+            }
+          } 
+          
+          source += '\n';
+          
+          if (exports) {
+            source += '\n(function(root) {';
+          }
+          source += '\n';
+          if (exports) {
+            source += '\t';
+          }
+          source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' })';
+          if (exports) {
+            source += '})(this);';
+          }
         }
         
         return source;
