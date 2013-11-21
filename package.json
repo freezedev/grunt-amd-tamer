@@ -17,8 +17,8 @@
   },
   "licenses": [
     {
-      "type": "MIT",
-      "url": "https://github.com/freezedev/grunt-amd-tamer/blob/master/LICENSE-MIT"
+      "type": "Public domain",
+      "url": "https://github.com/freezedev/grunt-amd-tamer/blob/master/LICENSE"
     }
   ],
   "main": "Gruntfile.js",
