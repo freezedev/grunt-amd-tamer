@@ -19,7 +19,9 @@ module.exports = function(grunt) {
       separator: grunt.util.linefeed,
       normalizeIndexFile: true,
       base: null,
-      doubleQuotes: false
+      doubleQuotes: false,
+      shims: {},
+      modules: {}
     });
 
     // Iterate over all specified file groups.
@@ -56,6 +58,14 @@ module.exports = function(grunt) {
         
         return source;
       }).join(grunt.util.normalizelf(options.separator));
+      
+      var moduleKeys = Object.keys(modules);
+      
+      for (var i = 0, j = moduleKeys.length; i < j; i++) {
+        (function(key, value) {
+          src += 'define(' + quotes + key + quotes + ', ' + value.toString() + ');';
+        })(moduleKeys[i], modules[moduleKeys[i]]);
+      }
 
       // Write the destination file.
       grunt.file.write(f.dest, src);
