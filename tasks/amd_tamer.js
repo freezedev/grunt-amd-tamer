@@ -56,6 +56,8 @@ module.exports = function(grunt) {
           moduleName = namespace + '/' + moduleName;
         }
         
+        moduleName = options.processName(moduleName);
+        
         var quotes = (options.doubleQuotes) ? '"' : '\'';
         
         if (source.indexOf('define([') >= 0 || source.indexOf('define(function') >= 0 || source.indexOf('define({') >= 0) {
