@@ -16,8 +16,10 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('amd_tamer', 'Tame your AMD modules', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      separator: ', ',
-      base: null
+      separator: grunt.util.linefeed,
+      normalizeIndexFile: true,
+      base: null,
+      doubleQuotes: false
     });
 
     // Iterate over all specified file groups.
@@ -40,10 +42,16 @@ module.exports = function(grunt) {
           moduleName = moduleName.split(options.base)[1];
         }
         
+        if (options.normalizeIndexFile) {
+          moduleName = moduleName.replace('/index', '');
+        }
+        
+        var quotes = (options.doubleQuotes) ? '"' : '\'';
+        
         if (source.indexOf('define([') >= 0 || source.indexOf('define(function') >= 0 || source.indexOf('define({') >= 0) {
-          source = source.replace('define(', 'define("' + moduleName + '", ');
+          source = source.replace('define(', 'define(' + quotes + moduleName + quotes +', ');
         } else {
-          source += '\n\ndefine("' + moduleName + '", function() {})';
+          source += '\n\ndefine(' + quotes + moduleName + quotes + ', function() {})';
         }
         
         return source;
