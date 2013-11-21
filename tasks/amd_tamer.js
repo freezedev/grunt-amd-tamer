@@ -53,7 +53,7 @@ module.exports = function(grunt) {
         }
         
         if (options.namespace) {
-          moduleName = namespace + '/' + moduleName;
+          moduleName = options.namespace + '/' + moduleName;
         }
         
         moduleName = options.processName(moduleName, path.basename(moduleName));
