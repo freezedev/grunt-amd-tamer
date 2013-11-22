@@ -60,10 +60,35 @@ module.exports = function(grunt) {
         
         var quotes = (options.doubleQuotes) ? '"' : '\'';
         
-        if (source.indexOf('define([') >= 0 || source.indexOf('define(function') >= 0 || source.indexOf('define({') >= 0) {
-          source = source.replace('define(', 'define(' + quotes + moduleName + quotes +', ');
+        var defineStatement = 'define(';
+        
+        var defineStartPos = source.indexOf(defineStatement);
+        var defineIndex = defineStartPos + defineStatement.length;
+        
+        if (extension === '.coffee' && defineStartPos === -1) {
+          defineStartPos = source.indexOf('define ');
+          defineIndex = defineStartPos + defineStatement.length;
+          defineStatement = 'define ';
+        }
+        
+        var doubleQuoteIndex = source.indexOf('\'', defineIndex);
+        var singleQuoteIndex = source.indexOf('"', defineIndex);
+        var quoteIndex = (doubleQuoteIndex < singleQuoteIndex) ? doubleQuoteIndex : singleQuoteIndex;
+        
+        var abortCondition = false;
+        
+        if (defineStartPos === -1) {
+          abortCondition = true;
         } else {
-          if (source.indexOf('define(') === -1) {
+          if (source.substr(defineIndex, quoteIndex).trim().length > 0) {
+            abortCondition = true;
+          }
+        }
+
+        if (!abortCondition) {
+          source = source.replace(defineStatement, defineStatement + quotes + moduleName + quotes + ', ');
+        } else {
+          if (source.indexOf(defineStatement) === -1) {
             var deps = '';
             var exports = '';
             

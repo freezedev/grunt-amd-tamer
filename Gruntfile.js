@@ -28,29 +28,33 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     amd_tamer: {
-      default_options: {
+      javascript: {
         options: {
-          base: 'test/fixtures/'
+          base: 'test/fixtures/js/'
         },
         files: {
-          'tmp/test.js': ['test/fixtures/**/*.js'],
+          'tmp/test.js': ['test/fixtures/js/**/*.js'],
         },
       },
-      custom_options: {
+      coffeescript: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!',
+          base: 'test/fixtures/coffee/'
         },
         files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/test.coffee': ['test/fixtures/coffee/**/*.coffee'],
         },
-      },
+      }
     },
 
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js'],
     },
+    
+    // Release
+    relase: {
+      
+    }
 
   });
 
@@ -61,6 +65,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-release');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
