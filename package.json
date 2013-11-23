@@ -1,7 +1,7 @@
 {
   "name": "grunt-amd-tamer",
   "description": "Tame your AMD modules",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "homepage": "https://github.com/freezedev/grunt-amd-tamer",
   "author": {
     "name": "Johannes Stein",
