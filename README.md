@@ -1,7 +1,7 @@
 # grunt-amd-tamer
 
-[![Build Status](https://travis-ci.org/freezedev/grunt-amd-tamer.png?branch=master)](https://travis-ci.org/freezedev/grunt-amd-tamer)  
-[![Dependency Status](https://david-dm.org/freezedev/grunt-amd-tamer.png)](https://david-dm.org/freezedev/grunt-amd-tamer)  
+[![Build Status](https://travis-ci.org/freezedev/grunt-amd-tamer.png?branch=master)](https://travis-ci.org/freezedev/grunt-amd-tamer)
+[![Dependency Status](https://david-dm.org/freezedev/grunt-amd-tamer.png)](https://david-dm.org/freezedev/grunt-amd-tamer)
 [![devDependency Status](https://david-dm.org/freezedev/grunt-amd-tamer/dev-status.png)](https://david-dm.org/freezedev/grunt-amd-tamer#info=devDependencies)
 
 > Tame your AMD modules
