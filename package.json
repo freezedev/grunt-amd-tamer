@@ -42,5 +42,8 @@
     "gruntplugin",
     "amd",
     "modules"
-  ]
+  ],
+  "dependencies": {
+    "source-map": "~0.1.31"
+  }
 }
