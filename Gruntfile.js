@@ -33,8 +33,26 @@ module.exports = function(grunt) {
           base: 'test/fixtures/js/simple/'
         },
         files: {
-          'tmp/javascript_simple.js': ['test/fixtures/js/**/*.js'],
+          'tmp/javascript_simple.js': ['test/fixtures/js/simple/**/*.js'],
+        }
+      },
+      javascript_noindex: {
+        options: {
+          base: 'test/fixtures/js/noindex/',
+          normalizeIndexFile: true
         },
+        files: {
+          'tmp/javascript_noindex.js': ['test/fixtures/js/noindex/**/*.js'],
+        }
+      },
+      javascript_namespace: {
+        options: {
+          base: 'test/fixtures/js/namespace/',
+          namespace: 'test'
+        },
+        files: {
+          'tmp/javascript_namespace.js': ['test/fixtures/js/namespace/**/*.js'],
+        }
       },
       coffeescript: {
         options: {
@@ -42,7 +60,7 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/coffee.coffee': ['test/fixtures/coffee/**/*.coffee'],
-        },
+        }
       }
     },
 
