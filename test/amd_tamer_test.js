@@ -27,21 +27,21 @@ exports.amd_tamer = {
     // setup here if necessary
     done();
   },
-  default_options: function(test) {
+  javascript_simple: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    var actual = grunt.file.read('tmp/javascript_simple.js');
+    var expected = grunt.file.read('test/expected/javascript_simple.js');
+    test.equal(actual, expected, 'Simple JavaScript test');
 
     test.done();
   },
-  custom_options: function(test) {
+  coffeescript: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+    var actual = grunt.file.read('tmp/coffee.coffee');
+    var expected = grunt.file.read('test/expected/coffee.coffee');
+    test.equal(actual, expected, 'CoffeeScript test');
 
     test.done();
   },
