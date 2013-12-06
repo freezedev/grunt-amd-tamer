@@ -28,12 +28,12 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     amd_tamer: {
-      javascript: {
+      javascript_simple: {
         options: {
-          base: 'test/fixtures/js/'
+          base: 'test/fixtures/js/simple/'
         },
         files: {
-          'tmp/test.js': ['test/fixtures/js/**/*.js'],
+          'tmp/javascript_simple.js': ['test/fixtures/js/**/*.js'],
         },
       },
       coffeescript: {
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
           base: 'test/fixtures/coffee/'
         },
         files: {
-          'tmp/test.coffee': ['test/fixtures/coffee/**/*.coffee'],
+          'tmp/coffee.coffee': ['test/fixtures/coffee/**/*.coffee'],
         },
       }
     },
