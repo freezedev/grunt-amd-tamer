@@ -45,6 +45,15 @@ exports.amd_tamer = {
 
     test.done();
   },
+  javascript_nodefine: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/javascript_nodefine.js');
+    var expected = grunt.file.read('test/expected/javascript_nodefine.js');
+    test.equal(actual, expected, 'No-define JavaScript test');
+
+    test.done();
+  },
   javascript_noindex: function(test) {
     test.expect(1);
 
