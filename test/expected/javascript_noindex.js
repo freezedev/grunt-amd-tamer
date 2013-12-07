@@ -2,7 +2,7 @@ define('file', ['a', 'b'], function(a, b) {
   return a + b;
 });
 
-define('index', function() {
+define('folder/index', function() {
   return {
     a: 4,
     b: 6
