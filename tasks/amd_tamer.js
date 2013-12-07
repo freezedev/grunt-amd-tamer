@@ -48,6 +48,8 @@ module.exports = function(grunt) {
         // Read file source.
         var source = grunt.file.read(filepath);
         var extension = path.extname(filepath);
+        var isCoffeeScript = (extension === '.coffee');
+        
         var moduleName = filepath.split(extension)[0];
         if (options.base && moduleName.indexOf(options.base) === 0) {
           moduleName = moduleName.split(options.base)[1];
@@ -76,7 +78,7 @@ module.exports = function(grunt) {
         var defineStartPos = source.indexOf(defineStatement);
         var defineIndex = defineStartPos + defineStatement.length;
         
-        if (extension === '.coffee' && defineStartPos === -1) {
+        if (isCoffeeScript && defineStartPos === -1) {
           defineStartPos = source.indexOf('define ');
           defineIndex = defineStartPos + defineStatement.length;
           defineStatement = 'define ';
@@ -108,21 +110,35 @@ module.exports = function(grunt) {
               }
               
               if (options.shims[moduleName].exports) {
-                exports = 'return root.' + options.shims[moduleName].exports + ';';
+                if (isCoffeeScript) {
+                  exports = options.shims[moduleName].exports;
+                } else {
+                  exports = 'return root.' + options.shims[moduleName].exports + ';';                  
+                }
               }
             } 
             
             source += '\n';
             
             if (exports) {
-              source += '\n(function(root) {';
+              if (isCoffeeScript) {
+                source += '\ndo (root) ->';
+              } else {
+                source += '\n(function(root) {';                
+              }
             }
             source += '\n';
             if (exports) {
               source += '\t';
             }
-            source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' });';
-            if (exports) {
+            
+            if (isCoffeeScript) {
+              source += 'define(' + quotes + moduleName + quotes + ', ' + deps + '-> ' + exports + ' )';
+            } else {
+              source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' });';              
+            }
+            
+            if (exports && !isCoffeeScript) {
               source += '})(this);';
             }
           }
