@@ -38,7 +38,7 @@ define('test/file', ['a', 'b'], function(a, b) {
   return a + b;
 });
 
-define('test/index', function() {
+define('test', function() {
   return {
     a: 4,
     b: 6
