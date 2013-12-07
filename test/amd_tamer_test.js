@@ -63,6 +63,15 @@ exports.amd_tamer = {
 
     test.done();
   },
+  javascript_noindex_namespace: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/javascript_noindex_namespace.js');
+    var expected = grunt.file.read('test/expected/javascript_noindex_namespace.js');
+    test.equal(actual, expected, 'No-index namespaced JavaScript test');
+
+    test.done();
+  },
   coffeescript: function(test) {
     test.expect(1);
 

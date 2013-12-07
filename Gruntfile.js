@@ -47,10 +47,20 @@ module.exports = function(grunt) {
       javascript_noindex: {
         options: {
           base: 'test/fixtures/js/noindex/',
-          normalizeIndexFile: true
+          normalizeIndexFile: false
         },
         files: {
           'tmp/javascript_noindex.js': ['test/fixtures/js/noindex/**/*.js'],
+        }
+      },
+      javascript_noindex_namespace: {
+        options: {
+          base: 'test/fixtures/js/noindex_namespace/',
+          normalizeIndexFile: false,
+          namespace: 'test'
+        },
+        files: {
+          'tmp/javascript_noindex_namespace.js': ['test/fixtures/js/noindex_namespace/**/*.js'],
         }
       },
       javascript_namespace: {
