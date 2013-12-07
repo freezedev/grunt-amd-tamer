@@ -72,6 +72,21 @@ module.exports = function(grunt) {
           'tmp/javascript_namespace.js': ['test/fixtures/js/namespace/**/*.js'],
         }
       },
+      javascript_processname: {
+        options: {
+          base: 'test/fixtures/js/processname/',
+          processName: function(name) {
+            if (name.indexOf('submodule') >= 0) {
+              return name.replace('submodule', 'subsubmodule');
+            } else {
+              return name.replace('named', 'reallynamed');              
+            }
+          }
+        },
+        files: {
+          'tmp/javascript_processname.js': ['test/fixtures/js/processname/**/*.js'],
+        }
+      },
       coffeescript_default: {
         options: {
           base: 'test/fixtures/coffee/default/'

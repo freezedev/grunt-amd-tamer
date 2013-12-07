@@ -72,6 +72,15 @@ exports.amd_tamer = {
 
     test.done();
   },
+  javascript_processname: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/javascript_processname.js');
+    var expected = grunt.file.read('test/expected/javascript_processname.js');
+    test.equal(actual, expected, 'Processname JavaScript test');
+
+    test.done();
+  },
   coffeescript_default: function(test) {
     test.expect(1);
 
