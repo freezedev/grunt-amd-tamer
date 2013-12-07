@@ -58,7 +58,13 @@ module.exports = function(grunt) {
         }
         
         if (options.namespace) {
-          moduleName = options.namespace + '/' + moduleName;
+          // If index.js is in the root folder and a namespace has been defined
+          // use the namespace as the module name
+          if (options.normalizeIndexFile && moduleName === 'index') {
+            moduleName = options.namespace;
+          } else {
+            moduleName = options.namespace + '/' + moduleName;            
+          }
         }
         
         moduleName = options.processName(moduleName, path.basename(moduleName));
