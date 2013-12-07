@@ -72,6 +72,15 @@ exports.amd_tamer = {
 
     test.done();
   },
+  javascript_shims: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/javascript_shims.js');
+    var expected = grunt.file.read('test/expected/javascript_shims.js');
+    test.equal(actual, expected, 'Shimmed JavaScript test');
+
+    test.done();
+  },
   javascript_processname: function(test) {
     test.expect(1);
 
@@ -84,8 +93,8 @@ exports.amd_tamer = {
   coffeescript_default: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/coffee_default.coffee');
-    var expected = grunt.file.read('test/expected/coffee_default.coffee');
+    var actual = grunt.file.read('tmp/coffeescript_default.coffee');
+    var expected = grunt.file.read('test/expected/coffeescript_default.coffee');
     test.equal(actual, expected, 'CoffeeScript default test');
 
     test.done();
@@ -93,9 +102,18 @@ exports.amd_tamer = {
   coffeescript_nodefine: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/coffee_nodefine.coffee');
-    var expected = grunt.file.read('test/expected/coffee_nodefine.coffee');
+    var actual = grunt.file.read('tmp/coffeescript_nodefine.coffee');
+    var expected = grunt.file.read('test/expected/coffeescript_nodefine.coffee');
     test.equal(actual, expected, 'CoffeeScript nodefine test');
+
+    test.done();
+  },
+  coffeescript_shims: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/coffeescript_shims.coffee');
+    var expected = grunt.file.read('test/expected/coffeescript_shims.coffee');
+    test.equal(actual, expected, 'Shimmed CoffeeScript test');
 
     test.done();
   }

@@ -106,12 +106,12 @@ module.exports = function(grunt) {
             
             if (options.shims[moduleName]) {
               if (options.shims[moduleName].deps) {
-                deps = '[' + options.shims[moduleName].deps.join(', ') + '], ';
+                deps = '[' + options.shims[moduleName].deps.map(function(val) { return '\'' + val + '\''; }).join(', ') + '], ';
               }
               
               if (options.shims[moduleName].exports) {
                 if (isCoffeeScript) {
-                  exports = options.shims[moduleName].exports;
+                  exports = 'root.' + options.shims[moduleName].exports;
                 } else {
                   exports = 'return root.' + options.shims[moduleName].exports + ';';                  
                 }
@@ -139,7 +139,7 @@ module.exports = function(grunt) {
             }
             
             if (exports && !isCoffeeScript) {
-              source += '})(this);';
+              source += '\n})(this);';
             }
           }
         }
