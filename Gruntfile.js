@@ -79,6 +79,14 @@ module.exports = function(grunt) {
         files: {
           'tmp/coffee_default.coffee': ['test/fixtures/coffee/default/**/*.coffee'],
         }
+      },
+      coffeescript_nodefine: {
+        options: {
+          base: 'test/fixtures/coffee/nodefine/'
+        },
+        files: {
+          'tmp/coffee_nodefine.coffee': ['test/fixtures/coffee/nodefine/**/*.coffee'],
+        }
       }
     },
 

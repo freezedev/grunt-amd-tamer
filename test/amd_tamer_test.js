@@ -81,4 +81,13 @@ exports.amd_tamer = {
 
     test.done();
   },
+  coffeescript_nodefine: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/coffee_nodefine.coffee');
+    var expected = grunt.file.read('test/expected/coffee_nodefine.coffee');
+    test.equal(actual, expected, 'CoffeeScript nodefine test');
+
+    test.done();
+  }
 };
