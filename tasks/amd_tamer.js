@@ -80,13 +80,14 @@ module.exports = function(grunt) {
         
         var abortCondition = false;
         
-        if (defineStartPos === -1 || quoteIndex == null) {
+        if (defineStartPos === -1) {
           abortCondition = true;
         } else {
-          if (source.substr(defineIndex, quoteIndex).trim().length > 0) {
-            abortCondition = true;
+          if (quoteIndex >= 0 && source.substr(defineIndex, quoteIndex).trim().length === 0) {
+            abortCondition = true;            
           }
         }
+        
 
         if (!abortCondition) {
           source = source.replace(defineStatement, defineStatement + quotes + moduleName + quotes + ', ');
