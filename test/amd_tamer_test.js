@@ -72,12 +72,12 @@ exports.amd_tamer = {
 
     test.done();
   },
-  coffeescript: function(test) {
+  coffeescript_default: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/coffee.coffee');
-    var expected = grunt.file.read('test/expected/coffee.coffee');
-    test.equal(actual, expected, 'CoffeeScript test');
+    var actual = grunt.file.read('tmp/coffee_default.coffee');
+    var expected = grunt.file.read('test/expected/coffee_default.coffee');
+    test.equal(actual, expected, 'CoffeeScript default test');
 
     test.done();
   },
