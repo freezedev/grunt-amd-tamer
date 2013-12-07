@@ -8,7 +8,10 @@
 
 var path = require('path');
 
+
 module.exports = function(grunt) {
+  
+  grunt.loadNpmTask('grunt-concat-sourcemap');
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
@@ -21,6 +24,7 @@ module.exports = function(grunt) {
       base: null,
       doubleQuotes: false,
       namespace: null,
+      sourcemap: true,
       processName: function(name) {
         return name;
       },
@@ -30,6 +34,7 @@ module.exports = function(grunt) {
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
+      
       // Concat specified files.
       var src = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
@@ -71,13 +76,11 @@ module.exports = function(grunt) {
           defineStatement = 'define ';
         }
         
-        var doubleQuoteIndex = source.indexOf('\'', defineIndex);
-        var singleQuoteIndex = source.indexOf('"', defineIndex);
-        var quoteIndex = (doubleQuoteIndex < singleQuoteIndex) ? doubleQuoteIndex : singleQuoteIndex;
+        var quoteIndex = source.substr(defineIndex).search(/('|")/);
         
         var abortCondition = false;
         
-        if (defineStartPos === -1) {
+        if (defineStartPos === -1 || quoteIndex == null) {
           abortCondition = true;
         } else {
           if (source.substr(defineIndex, quoteIndex).trim().length > 0) {
