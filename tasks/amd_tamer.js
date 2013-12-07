@@ -106,7 +106,7 @@ module.exports = function(grunt) {
             
             if (options.shims[moduleName]) {
               if (options.shims[moduleName].deps) {
-                deps = '[' + options.shims[moduleName].deps.map(function(val) { return '\'' + val + '\''; }).join(', ') + '], ';
+                deps = '[' + options.shims[moduleName].deps.map(function(val) { return quotes + val + quotes; }).join(', ') + '], ';
               }
               
               if (options.shims[moduleName].exports) {
