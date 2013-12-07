@@ -72,12 +72,12 @@ module.exports = function(grunt) {
           'tmp/javascript_namespace.js': ['test/fixtures/js/namespace/**/*.js'],
         }
       },
-      coffeescript: {
+      coffeescript_default: {
         options: {
-          base: 'test/fixtures/coffee/'
+          base: 'test/fixtures/coffee/default/'
         },
         files: {
-          'tmp/coffee.coffee': ['test/fixtures/coffee/**/*.coffee'],
+          'tmp/coffee_default.coffee': ['test/fixtures/coffee/default/**/*.coffee'],
         }
       }
     },
