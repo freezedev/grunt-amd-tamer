@@ -36,6 +36,14 @@ module.exports = function(grunt) {
           'tmp/javascript_simple.js': ['test/fixtures/js/simple/**/*.js'],
         }
       },
+      javascript_nodefine: {
+        options: {
+          base: 'test/fixtures/js/nodefine/'
+        },
+        files: {
+          'tmp/javascript_nodefine.js': ['test/fixtures/js/nodefine/**/*.js'],
+        }
+      },
       javascript_noindex: {
         options: {
           base: 'test/fixtures/js/noindex/',
