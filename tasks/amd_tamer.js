@@ -11,7 +11,7 @@ var path = require('path');
 
 module.exports = function(grunt) {
   
-  grunt.loadNpmTask('grunt-concat-sourcemap');
+  grunt.loadNpmTasks('grunt-concat-sourcemap');
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
