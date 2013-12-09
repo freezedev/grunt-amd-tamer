@@ -42,31 +42,31 @@ grunt.initConfig({
 ### Options
 
 #### options.separator
-Type: `String`
+Type: `String`  
 Default value: `grunt.util.linefeed`
 
 The separator between files. Usually, you don't need to change this
 
 #### options.normalizeIndexFile
-Type: `Boolean`
+Type: `Boolean`  
 Default value: `true`
 
 Mimics CommonJS behavior with `index.js` files. An anonymous module that with `index.js` as its filename will resolve to its parent folder, e.g. `folder/index` is `folder`.
 
 #### options.base
-Type: `String`
+Type: `String`  
 Default value: `null`
 
 Cuts off the string provided from the module name, e.g. if `src/` is provided, `src/mymodule` will be `mymodule`
 
 #### options.doubleQuotes
-Type: `Boolean`
+Type: `Boolean`  
 Default value: `false`
 
 If set to true, generated module names and shims are wrapped in double quotes instead of single quotes.
 
 #### options.namespace
-Type: `String`
+Type: `String`  
 Default value: null
 
 Prepends a namespace to each module name, e.g. if `test` is set as the namespace, `mymodule` becomes `test/mymodule`.
