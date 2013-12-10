@@ -135,8 +135,8 @@ module.exports = function(grunt) {
             if (isCoffeeScript) {
               source += 'define(' + quotes + moduleName + quotes + ', ' + deps + '-> ' + exports + ' )';
             } else {
-              if (typeof exports === 'function') {
-                source += 'define(' + quotes + moduleName + quotes + ', ' + deps + exports.toString() + ' });';      
+              if (typeof options.shim[moduleName].exports === 'function') {
+                source += 'define(' + quotes + moduleName + quotes + ', ' + deps + options.shim[moduleName].exports.toString() + ' });';      
               } else {
                 source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' });';                              
               }
