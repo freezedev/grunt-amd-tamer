@@ -123,7 +123,7 @@ module.exports = function(grunt) {
       coffeescript_shims: {
         options: {
           base: 'test/fixtures/coffee/shims/',
-          shims: {
+          shim: {
             a: {
               exports: 'a.test'
             },
