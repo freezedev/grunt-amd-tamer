@@ -72,11 +72,11 @@ exports.amd_tamer = {
 
     test.done();
   },
-  javascript_shims: function(test) {
+  javascript_shim: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/javascript_shims.js');
-    var expected = grunt.file.read('test/expected/javascript_shims.js');
+    var actual = grunt.file.read('tmp/javascript_shim.js');
+    var expected = grunt.file.read('test/expected/javascript_shim.js');
     test.equal(actual, expected, 'Shimmed JavaScript test');
 
     test.done();
@@ -108,11 +108,11 @@ exports.amd_tamer = {
 
     test.done();
   },
-  coffeescript_shims: function(test) {
+  coffeescript_shim: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/coffeescript_shims.coffee');
-    var expected = grunt.file.read('test/expected/coffeescript_shims.coffee');
+    var actual = grunt.file.read('tmp/coffeescript_shim.coffee');
+    var expected = grunt.file.read('test/expected/coffeescript_shim.coffee');
     test.equal(actual, expected, 'Shimmed CoffeeScript test');
 
     test.done();
