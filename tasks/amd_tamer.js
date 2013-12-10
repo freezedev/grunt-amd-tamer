@@ -110,10 +110,14 @@ module.exports = function(grunt) {
               }
               
               if (options.shim[moduleName].exports) {
-                if (isCoffeeScript) {
-                  exports = 'root.' + options.shim[moduleName].exports;
+                if (typeof options.shim[moduleName].exports === 'function') {
+                  exports = typeof options.shim[moduleName].exports;
                 } else {
-                  exports = 'return root.' + options.shim[moduleName].exports + ';';                  
+                  if (isCoffeeScript) {
+                    exports = 'root.' + options.shim[moduleName].exports;
+                  } else {
+                    exports = 'return root.' + options.shim[moduleName].exports + ';';                  
+                  }
                 }
               }
             } 
@@ -135,8 +139,8 @@ module.exports = function(grunt) {
             if (isCoffeeScript) {
               source += 'define(' + quotes + moduleName + quotes + ', ' + deps + '-> ' + exports + ' )';
             } else {
-              if (typeof options.shim[moduleName].exports === 'function') {
-                source += 'define(' + quotes + moduleName + quotes + ', ' + deps + options.shim[moduleName].exports.toString() + ' });';      
+              if (exports && typeof exports === 'function') {
+                source += 'define(' + quotes + moduleName + quotes + ', ' + deps + exports.toString() + ' });';      
               } else {
                 source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' });';                              
               }
