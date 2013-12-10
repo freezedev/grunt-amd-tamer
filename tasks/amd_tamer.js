@@ -140,7 +140,7 @@ module.exports = function(grunt) {
               source += 'define(' + quotes + moduleName + quotes + ', ' + deps + '-> ' + exports + ' )';
             } else {
               if (exports && typeof exports === 'function') {
-                source += 'define(' + quotes + moduleName + quotes + ', ' + deps + exports.toString() + ' });';      
+                source += 'define(' + quotes + moduleName + quotes + ', ' + deps + exports.toString() + ');';      
               } else {
                 source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' });';                              
               }
