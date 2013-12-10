@@ -44,9 +44,9 @@ module.exports = function(grunt) {
           'tmp/javascript_nodefine.js': ['test/fixtures/js/nodefine/**/*.js'],
         }
       },
-      javascript_shims: {
+      javascript_shim: {
         options: {
-          base: 'test/fixtures/js/shims/',
+          base: 'test/fixtures/js/shim/',
           shim: {
             a: {
               exports: 'a.test'
@@ -54,11 +54,17 @@ module.exports = function(grunt) {
             b: {
               deps: ['a'],
               exports: 'b'
+            },
+            c: {
+              deps: ['b'],
+              exports: function(b) {
+                return b + '&*';
+              }
             }
           }
         },
         files: {
-          'tmp/javascript_shims.js': ['test/fixtures/js/shims/**/*.js'],
+          'tmp/javascript_shim.js': ['test/fixtures/js/shim/**/*.js'],
         }
       },
       javascript_noindex: {
@@ -120,9 +126,9 @@ module.exports = function(grunt) {
           'tmp/coffeescript_nodefine.coffee': ['test/fixtures/coffee/nodefine/**/*.coffee'],
         }
       },
-      coffeescript_shims: {
+      coffeescript_shim: {
         options: {
-          base: 'test/fixtures/coffee/shims/',
+          base: 'test/fixtures/coffee/shim/',
           shim: {
             a: {
               exports: 'a.test'
@@ -134,7 +140,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'tmp/coffeescript_shims.coffee': ['test/fixtures/coffee/shims/**/*.coffee'],
+          'tmp/coffeescript_shim.coffee': ['test/fixtures/coffee/shim/**/*.coffee'],
         }
       }
     },
