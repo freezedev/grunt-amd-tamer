@@ -28,7 +28,7 @@ module.exports = function(grunt) {
       processName: function(name) {
         return name;
       },
-      shims: {},
+      shim: {},
       modules: {}
     });
 
@@ -104,16 +104,16 @@ module.exports = function(grunt) {
             var deps = '';
             var exports = '';
             
-            if (options.shims[moduleName]) {
-              if (options.shims[moduleName].deps) {
-                deps = '[' + options.shims[moduleName].deps.map(function(val) { return quotes + val + quotes; }).join(', ') + '], ';
+            if (options.shim[moduleName]) {
+              if (options.shim[moduleName].deps) {
+                deps = '[' + options.shim[moduleName].deps.map(function(val) { return quotes + val + quotes; }).join(', ') + '], ';
               }
               
-              if (options.shims[moduleName].exports) {
+              if (options.shim[moduleName].exports) {
                 if (isCoffeeScript) {
-                  exports = 'root.' + options.shims[moduleName].exports;
+                  exports = 'root.' + options.shim[moduleName].exports;
                 } else {
-                  exports = 'return root.' + options.shims[moduleName].exports + ';';                  
+                  exports = 'return root.' + options.shim[moduleName].exports + ';';                  
                 }
               }
             } 

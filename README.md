@@ -113,7 +113,7 @@ grunt.initConfig({
     options: {
       base: 'src/',
       namespace: 'test',
-      shims: {
+      shim: {
         a: {
           exports: 'a.test'
         },

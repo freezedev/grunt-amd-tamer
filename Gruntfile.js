@@ -47,7 +47,7 @@ module.exports = function(grunt) {
       javascript_shims: {
         options: {
           base: 'test/fixtures/js/shims/',
-          shims: {
+          shim: {
             a: {
               exports: 'a.test'
             },
