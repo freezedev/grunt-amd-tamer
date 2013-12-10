@@ -111,7 +111,7 @@ module.exports = function(grunt) {
               
               if (options.shim[moduleName].exports) {
                 if (typeof options.shim[moduleName].exports === 'function') {
-                  exports = typeof options.shim[moduleName].exports;
+                  exports = options.shim[moduleName].exports;
                 } else {
                   if (isCoffeeScript) {
                     exports = 'root.' + options.shim[moduleName].exports;
