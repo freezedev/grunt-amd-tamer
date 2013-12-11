@@ -7,7 +7,7 @@
 
 
 (function(root) {
-  define('a', function() { return root.a.test; });
+	define('a', function() { return root.a.test; });
 })(this);
 function b() {
   return {
@@ -22,7 +22,7 @@ function b() {
 
 
 (function(root) {
-  define('b', ['a'], function() { return root.b; });
+	define('b', ['a'], function() { return root.b; });
 })(this);
 var c = {
   d: function() {
@@ -35,7 +35,7 @@ var c = {
 
 
 (function(root) {
-  define('c', ['b'], function (b) {
+	define('c', ['b'], function (b) {
                 return b + '&*';
               });
 })(this);
