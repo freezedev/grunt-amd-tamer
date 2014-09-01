@@ -42,31 +42,31 @@ grunt.initConfig({
 ### Options
 
 #### options.separator
-Type: `String`  
+Type: `String`
 Default value: `grunt.util.linefeed`
 
 The separator between files. Usually, you don't need to change this
 
 #### options.normalizeIndexFile
-Type: `Boolean`  
+Type: `Boolean`
 Default value: `true`
 
 Mimics CommonJS behavior with `index.js` files. An anonymous module that with `index.js` as its filename will resolve to its parent folder, e.g. `folder/index` is `folder`.
 
 #### options.base
-Type: `String`  
+Type: `String`
 Default value: `null`
 
 Cuts off the string provided from the module name, e.g. if `src/` is provided, `src/mymodule` will be `mymodule`
 
 #### options.doubleQuotes
-Type: `Boolean`  
+Type: `Boolean`
 Default value: `false`
 
 If set to true, generated module names and shims are wrapped in double quotes instead of single quotes.
 
 #### options.namespace
-Type: `String`  
+Type: `String`
 Default value: null
 
 Prepends a namespace to each module name, e.g. if `test` is set as the namespace, `mymodule` becomes `test/mymodule`.
@@ -75,6 +75,11 @@ Prepends a namespace to each module name, e.g. if `test` is set as the namespace
 Type: `Function`
 
 Allows to define a function to process module names. Keep in mind, only anonymous module are being processed, not named ones.
+
+#### options.process
+Type: `Function`
+
+Allows to process the file after transformation
 
 #### options.shims
 Type: `Object`
@@ -133,15 +138,15 @@ grunt.initConfig({
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
-## Release History  
-0.1.7 Improved RequireJS compatibility  
-0.1.6 Unit tests + Documentation  
-0.1.5 Updated devDependencies to current version + Travis CI configuration  
-0.1.4 Initial CoffeeScript support  
-0.1.3 Improved error handling  
-0.1.2 Namespace options hotfix  
-0.1.1 Added options for namespace, basename and processName  
-0.1.0 Initial version  
+## Release History
+0.1.7 Improved RequireJS compatibility
+0.1.6 Unit tests + Documentation
+0.1.5 Updated devDependencies to current version + Travis CI configuration
+0.1.4 Initial CoffeeScript support
+0.1.3 Improved error handling
+0.1.2 Namespace options hotfix
+0.1.1 Added options for namespace, basename and processName
+0.1.0 Initial version
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/freezedev/grunt-amd-tamer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
