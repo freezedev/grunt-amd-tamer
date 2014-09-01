@@ -42,8 +42,5 @@
     "gruntplugin",
     "amd",
     "modules"
-  ],
-  "dependencies": {
-    "grunt-concat-sourcemap": "~0.4.0"
-  }
+  ]
 }
