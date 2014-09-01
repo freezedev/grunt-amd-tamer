@@ -33,6 +33,8 @@ module.exports = function(grunt) {
       modules: {}
     });
 
+    var quotes = (options.doubleQuotes) ? '"' : '\'';
+
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
 
@@ -71,8 +73,6 @@ module.exports = function(grunt) {
         }
 
         moduleName = options.processName(moduleName, path.basename(moduleName));
-
-        var quotes = (options.doubleQuotes) ? '"' : '\'';
 
         var defineStatement = 'define(';
 
