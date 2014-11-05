@@ -7,7 +7,7 @@ JavaScript style guide
 
 Configuration can be found at `.jshintrc`.  
 
-Please note that Lyria is public domain (See LICENSE)
+Please note that grunt-amd-tamer is public domain (See LICENSE)
 
 For all non-trivial contributions, I require you to add this waiver to your
 contribution:
