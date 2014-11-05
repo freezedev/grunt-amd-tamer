@@ -139,15 +139,19 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-0.1.8 Added process option
-0.1.7 Improved RequireJS compatibility
-0.1.6 Unit tests + Documentation
-0.1.5 Updated devDependencies to current version + Travis CI configuration
-0.1.4 Initial CoffeeScript support
-0.1.3 Improved error handling
-0.1.2 Namespace options hotfix
-0.1.1 Added options for namespace, basename and processName
-0.1.0 Initial version
+0.1.8 Added process option  
+0.1.7 Improved RequireJS compatibility  
+0.1.6 Unit tests + Documentation  
+0.1.5 Updated devDependencies to current version + Travis CI configuration  
+0.1.4 Initial CoffeeScript support  
+0.1.3 Improved error handling  
+0.1.2 Namespace options hotfix  
+0.1.1 Added options for namespace, basename and processName  
+0.1.0 Initial version  
+
+## License
+Public domain (Unlicense), but can also be licensed under the terms of the MIT 
+license. Choose the one that fits your purpose best.
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/freezedev/grunt-amd-tamer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
