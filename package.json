@@ -45,5 +45,8 @@
     "module",
     "concat",
     "requirejs"
-  ]
+  ],
+  "dependencies": {
+    "sourcemap-concat": "^1.0.2"
+  }
 }
