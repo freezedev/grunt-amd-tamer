@@ -7,7 +7,7 @@
 'use strict';
 
 var path = require('path');
-
+var SourceMapConcat = require('sourcemap-concat').SourceMapConcatenator;
 
 module.exports = function(grunt) {
 
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       base: null,
       doubleQuotes: false,
       namespace: null,
-      sourcemap: true,
+      sourceMap: true,
       processName: function(name /*, basename */) {
         return name;
       },
@@ -30,13 +30,16 @@ module.exports = function(grunt) {
       	return content;
       },
       shim: {},
-      modules: {}
+      modules: {},
+      blacklist: []
     });
 
     var quotes = (options.doubleQuotes) ? '"' : '\'';
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
+      
+      var sourceMapConcat = new SourceMapConcat({file: f.dest});
 
       // Concat specified files.
       var src = f.src.filter(function(filepath) {
@@ -87,6 +90,7 @@ module.exports = function(grunt) {
 
         var quoteIndex = source.substr(defineIndex).search(/('|")/);
 
+        var abortProcessing = false;
         var abortCondition = false;
 
         if (defineStartPos === -1) {
@@ -96,64 +100,79 @@ module.exports = function(grunt) {
             abortCondition = true;
           }
         }
+        
+        if (options.blacklist.indexOf(moduleName) >= 0) {
+          abortProcessing = true;
+        }
+        
 
-
-        if (!abortCondition) {
-          source = source.replace(defineStatement, defineStatement + quotes + moduleName + quotes + ', ');
-        } else {
-          if (source.indexOf(defineStatement) === -1) {
-            var deps = '';
-            var exports = '';
-
-            if (options.shim[moduleName]) {
-              if (options.shim[moduleName].deps) {
-                deps = '[' + options.shim[moduleName].deps.map(function(val) { return quotes + val + quotes; }).join(', ') + '], ';
-              }
-
-              if (options.shim[moduleName].exports) {
-                if (typeof options.shim[moduleName].exports === 'function') {
-                  exports = options.shim[moduleName].exports;
-                } else {
-                  if (isCoffeeScript) {
-                    exports = 'root.' + options.shim[moduleName].exports;
+        if (!abortProcessing) {
+          if (!abortCondition) {
+            source = source.replace(defineStatement, defineStatement + quotes + moduleName + quotes + ', ');
+          } else {
+            if (source.indexOf(defineStatement) === -1) {
+              var deps = '';
+              var exports = '';
+      
+              if (options.shim[moduleName]) {
+                if (options.shim[moduleName].deps) {
+                  deps = '[' + options.shim[moduleName].deps.map(function(val) { return quotes + val + quotes; }).join(', ') + '], ';
+                }
+        
+                if (options.shim[moduleName].exports) {
+                  if (typeof options.shim[moduleName].exports === 'function') {
+                    exports = options.shim[moduleName].exports;
                   } else {
-                    exports = 'return root.' + options.shim[moduleName].exports + ';';
+                    if (isCoffeeScript) {
+                      exports = 'root.' + options.shim[moduleName].exports;
+                    } else {
+                      exports = 'return root.' + options.shim[moduleName].exports + ';';
+                    }
                   }
                 }
               }
-            }
-
-            source += '\n';
-
-            if (exports) {
+      
+              source += '\n';
+      
+              if (exports) {
+                if (isCoffeeScript) {
+                  source += '\ndo (root) ->';
+                } else {
+                  source += '\n(function(root) {';
+                }
+              }
+              source += '\n';
+              if (exports) {
+                source += '\t';
+              }
+      
               if (isCoffeeScript) {
-                source += '\ndo (root) ->';
+                source += 'define(' + quotes + moduleName + quotes + ', ' + deps + '-> ' + exports + ' )';
               } else {
-                source += '\n(function(root) {';
+                if (exports && typeof exports === 'function') {
+                  source += 'define(' + quotes + moduleName + quotes + ', ' + deps + exports.toString() + ');';
+                } else {
+                  source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' });';
+                }
               }
-            }
-            source += '\n';
-            if (exports) {
-              source += '\t';
-            }
-
-            if (isCoffeeScript) {
-              source += 'define(' + quotes + moduleName + quotes + ', ' + deps + '-> ' + exports + ' )';
-            } else {
-              if (exports && typeof exports === 'function') {
-                source += 'define(' + quotes + moduleName + quotes + ', ' + deps + exports.toString() + ');';
-              } else {
-                source += 'define(' + quotes + moduleName + quotes + ', ' + deps + 'function() { ' + exports + ' });';
+      
+              if (exports && !isCoffeeScript) {
+                source += '\n})(this);';
               }
-            }
-
-            if (exports && !isCoffeeScript) {
-              source += '\n})(this);';
             }
           }
         }
 
         source = options.process(source, moduleName);
+        
+        if (options.sourceMap) {
+          var prevSourceMap;
+          if (grunt.file.exists(filepath + '.map')) {
+            prevSourceMap = grunt.file.read(filepath + '.map');
+          }
+  
+          sourceMapConcat.add(filepath, source, prevSourceMap);
+        }
 
         return source;
       }).join(grunt.util.normalizelf(options.separator));
@@ -170,6 +189,10 @@ module.exports = function(grunt) {
 
       // Write the destination file.
       grunt.file.write(f.dest, src);
+      
+      if (options.sourceMap) {
+        grunt.file.write(f.dest + '.map', sourceMapConcat.sourceMap);
+      }
 
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');
