@@ -81,7 +81,7 @@ Type: `Function`
 
 Allows to process the file after transformation
 
-#### options.shims
+#### options.shim
 Type: `Object`
 
 Similar to RequireJS shims property. Allows to export symbols for non-AMD modules.
@@ -90,6 +90,18 @@ Similar to RequireJS shims property. Allows to export symbols for non-AMD module
 Type: `Object`
 
 Allows to manually define module which will be appended to the destination file.
+
+#### options.sourceMap
+Type: `Boolean`
+
+Generates a source map for the generated files
+
+#### options.blacklist
+Type: `Array`
+
+Module names inside the blacklist will not be transformed, only concatenated 
+to the output file. This is especially useful if your goal is to have only a 
+single JavaScript file in the end.
 
 ### Usage Examples
 
@@ -139,6 +151,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+0.1.9 Initial sourcemap support + Added blacklist option  
 0.1.8 Added process option  
 0.1.7 Improved RequireJS compatibility  
 0.1.6 Unit tests + Documentation  
