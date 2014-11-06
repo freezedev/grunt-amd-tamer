@@ -36,6 +36,15 @@ exports.amd_tamer = {
 
     test.done();
   },
+  javascript_dots: function(test) {
+    test.expect(1);
+    
+    var actual = grunt.file.read('tmp/javascript_dots.js');
+    var expected = grunt.file.read('test/expected/javascript_dots.js');
+    test.equal(actual, expected, 'JavaScript files with dots in file and module names');
+    
+    test.done();
+  },
   javascript_namespace: function(test) {
     test.expect(1);
 
