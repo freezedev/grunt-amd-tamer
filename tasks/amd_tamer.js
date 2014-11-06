@@ -168,7 +168,7 @@ module.exports = function(grunt) {
         if (options.sourceMap) {
           var prevSourceMap;
           if (grunt.file.exists(filepath + '.map')) {
-            prevSourceMap = grunt.file.read(filepath + '.map');
+            prevSourceMap = grunt.file.readJSON(filepath + '.map');
           }
   
           sourceMapConcat.add(filepath, source, prevSourceMap);
