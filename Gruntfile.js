@@ -33,7 +33,7 @@ module.exports = function(grunt) {
           base: 'test/fixtures/js/simple/'
         },
         files: {
-          'tmp/javascript_simple.js': ['test/fixtures/js/simple/**/*.js'],
+          'tmp/javascript_simple.js': ['test/fixtures/js/simple/**/*.js']
         }
       },
       javascript_nodefine: {
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
           base: 'test/fixtures/js/nodefine/'
         },
         files: {
-          'tmp/javascript_nodefine.js': ['test/fixtures/js/nodefine/**/*.js'],
+          'tmp/javascript_nodefine.js': ['test/fixtures/js/nodefine/**/*.js']
         }
       },
       javascript_shim: {
@@ -64,7 +64,16 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'tmp/javascript_shim.js': ['test/fixtures/js/shim/**/*.js'],
+          'tmp/javascript_shim.js': ['test/fixtures/js/shim/**/*.js']
+        }
+      },
+      javascript_dots: {
+        options: {
+          base: 'test/fixtures/js/dots/',
+          normalizeIndexFile: false
+        },
+        files: {
+          'tmp/javascript_dots.js': ['test/fixtures/js/dots/**/*.js']
         }
       },
       javascript_noindex: {
@@ -73,7 +82,7 @@ module.exports = function(grunt) {
           normalizeIndexFile: false
         },
         files: {
-          'tmp/javascript_noindex.js': ['test/fixtures/js/noindex/**/*.js'],
+          'tmp/javascript_noindex.js': ['test/fixtures/js/noindex/**/*.js']
         }
       },
       javascript_noindex_namespace: {
@@ -83,7 +92,7 @@ module.exports = function(grunt) {
           namespace: 'test'
         },
         files: {
-          'tmp/javascript_noindex_namespace.js': ['test/fixtures/js/noindex_namespace/**/*.js'],
+          'tmp/javascript_noindex_namespace.js': ['test/fixtures/js/noindex_namespace/**/*.js']
         }
       },
       javascript_namespace: {
@@ -92,7 +101,7 @@ module.exports = function(grunt) {
           namespace: 'test'
         },
         files: {
-          'tmp/javascript_namespace.js': ['test/fixtures/js/namespace/**/*.js'],
+          'tmp/javascript_namespace.js': ['test/fixtures/js/namespace/**/*.js']
         }
       },
       javascript_processname: {
@@ -107,7 +116,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'tmp/javascript_processname.js': ['test/fixtures/js/processname/**/*.js'],
+          'tmp/javascript_processname.js': ['test/fixtures/js/processname/**/*.js']
         }
       },
       coffeescript_default: {
@@ -115,7 +124,7 @@ module.exports = function(grunt) {
           base: 'test/fixtures/coffee/default/'
         },
         files: {
-          'tmp/coffeescript_default.coffee': ['test/fixtures/coffee/default/**/*.coffee'],
+          'tmp/coffeescript_default.coffee': ['test/fixtures/coffee/default/**/*.coffee']
         }
       },
       coffeescript_nodefine: {
@@ -123,7 +132,7 @@ module.exports = function(grunt) {
           base: 'test/fixtures/coffee/nodefine/'
         },
         files: {
-          'tmp/coffeescript_nodefine.coffee': ['test/fixtures/coffee/nodefine/**/*.coffee'],
+          'tmp/coffeescript_nodefine.coffee': ['test/fixtures/coffee/nodefine/**/*.coffee']
         }
       },
       coffeescript_shim: {
@@ -140,7 +149,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'tmp/coffeescript_shim.coffee': ['test/fixtures/coffee/shim/**/*.coffee'],
+          'tmp/coffeescript_shim.coffee': ['test/fixtures/coffee/shim/**/*.coffee']
         }
       }
     },
