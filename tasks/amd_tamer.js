@@ -29,6 +29,8 @@ module.exports = function(grunt) {
       process: function(content /*, moduleName */) {
       	return content;
       },
+      banner: '',
+      footer: '',
       shim: {},
       modules: {},
       blacklist: []
@@ -40,9 +42,19 @@ module.exports = function(grunt) {
     this.files.forEach(function(f) {
       
       var sourceMapConcat = new SourceMapConcat({file: f.dest});
+      
+      var src = '';
+      
+      if (options.banner) {
+        if (typeof options.banner === 'function') {
+          src += options.banner(f.dest);
+        } else {
+          src += options.banner;
+        }
+      }
 
       // Concat specified files.
-      var src = f.src.filter(function(filepath) {
+      src += f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -185,6 +197,14 @@ module.exports = function(grunt) {
         (function(key, value) {
           src += 'define(' + quotes + key + quotes + ', ' + value.toString() + ');';
         })(moduleKeys[i], modules[moduleKeys[i]]);
+      }
+  
+      if (options.footer) {
+        if (typeof options.footer === 'function') {
+          src += options.footer(f.dest);
+        } else {
+          src += options.footer;
+        }
       }
 
       // Write the destination file.
