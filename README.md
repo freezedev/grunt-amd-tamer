@@ -67,7 +67,7 @@ If set to true, generated module names and shims are wrapped in double quotes in
 
 #### options.namespace
 Type: `String`
-Default value: null
+Default value: `null
 
 Prepends a namespace to each module name, e.g. if `test` is set as the namespace, `mymodule` becomes `test/mymodule`.
 
@@ -93,6 +93,7 @@ Allows to manually define module which will be appended to the destination file.
 
 #### options.sourceMap
 Type: `Boolean`
+Default value: `true
 
 Generates a source map for the generated files
 
@@ -102,6 +103,16 @@ Type: `Array`
 Module names inside the blacklist will not be transformed, only concatenated 
 to the output file. This is especially useful if your goal is to have only a 
 single JavaScript file in the end.
+
+#### options.banner
+Type: `String` or `Function`
+
+Prepend something to the resulting file, like a copyright notice.
+
+#### options.footer
+Type: `String` or `Function`
+
+Append something to the resulting file, like a source map reference.
 
 ### Usage Examples
 
@@ -151,6 +162,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+0.1.11 Add banner and footer option
 0.1.10 Hotfix for including sourcemaps + Additional unit test  
 0.1.9  Initial sourcemap support + Added blacklist option  
 0.1.8  Added process option  
