@@ -183,6 +183,12 @@ module.exports = function(grunt) {
             prevSourceMap = grunt.file.readJSON(filepath + '.map');
           }
   
+          var fileSource = source;
+  
+          if (index !== filtered.length - 1 && !prevSourceMap) {
+            fileSource += grunt.util.normalizelf(options.separator);
+          }
+  
           sourceMapConcat.add(filepath, source, prevSourceMap);
         }
 
