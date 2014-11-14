@@ -53,8 +53,8 @@ module.exports = function(grunt) {
         }
       }
 
-      // Concat specified files.
-      src += f.src.filter(function(filepath) {
+      var index = 0;
+      var filtered = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -62,7 +62,12 @@ module.exports = function(grunt) {
         } else {
           return true;
         }
-      }).map(function(filepath) {
+      });
+  
+      // Concat specified files.
+      src += filtered.map(function(filepath) {
+        index++;
+        
         // Read file source.
         var source = grunt.file.read(filepath);
         var extension = path.extname(filepath);
