@@ -4,10 +4,12 @@
 [![Dependency Status](https://david-dm.org/freezedev/grunt-amd-tamer.png)](https://david-dm.org/freezedev/grunt-amd-tamer)
 [![devDependency Status](https://david-dm.org/freezedev/grunt-amd-tamer/dev-status.png)](https://david-dm.org/freezedev/grunt-amd-tamer#info=devDependencies)
 
-> Tame your AMD modules
+This module helps you manage your AMD modules. It converts anonymous modules into named ones, allows to add shims,
+add namespaces to modules, concatenate them all into a single file or leave them in separate files.
+In a way it's similar to the RequireJS bundler, but `grunt-amd-tamer` allows for more fine-grained control.
 
 ## Getting Started
-This plugin requires Grunt `~0.4.2`
+This plugin requires Grunt `^0.4.5`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -34,8 +36,73 @@ grunt.initConfig({
     },
     your_target: {
       // Target-specific file lists and/or options go here.
+    }
+  }
+})
+```
+
+You can then call the task using `grunt amd_tamer`.
+
+### Usage Examples
+
+#### Default Options
+In this example, the default options are used to do get a bunch javascript files and set `src/` as a base for all modules.
+
+```js
+grunt.initConfig({
+  amd_tamer: {
+    options: {
+      base: 'src/'
     },
-  },
+    files: {
+      'dest/file.js': ['src/**/*.js'],
+    }
+  }
+})
+```
+
+Sometimes you dont' want to have all the AMD modules in one file though. Here is an example to make anonymous modules
+named, but leave them in separate files:
+
+```js
+grunt.initConfig({
+  amd_tamer: {
+    options: {
+      base: 'src/'
+    },
+    files: [{
+      expand: true,
+      cwd: 'src/',
+      src: ['**/*.js']
+      dest: 'tmp/'
+    }]
+  }
+})
+```
+
+#### Advanced Options
+In this example, the `base` options is set as well. Also, all anonymous get the `test` namespace. There are also some shims defined for modules that are not an AMD module.
+
+```js
+grunt.initConfig({
+  amd_tamer: {
+    options: {
+      base: 'src/',
+      namespace: 'test',
+      shim: {
+        a: {
+          exports: 'a.test'
+        },
+        b: {
+          deps: ['a'],
+          exports: 'b'
+        }
+      }
+    },
+    files: {
+      'dest/file.js': ['src/**/*.js'],
+    }
+  }
 })
 ```
 
@@ -95,7 +162,8 @@ Allows to manually define module which will be appended to the destination file.
 Type: `Boolean`
 Default value: `true`
 
-Generates a source map for the generated files
+Generates a source map for the generated files. The source mapping URL does not get appended automatically though,
+you need handle that manually using `options.footer`.
 
 #### options.blacklist
 Type: `Array`
@@ -114,55 +182,11 @@ Type: `String` or `Function`
 
 Append something to the resulting file, like a source map reference.
 
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do get a bunch javascript files and set `src/` as a base for all modules.
-
-```js
-grunt.initConfig({
-  amd_tamer: {
-    options: {
-      base: 'src/'
-    },
-    files: {
-      'dest/file.js': ['src/**/*.js'],
-    },
-  }
-})
-```
-
-#### Advanced Options
-In this example, the `base` options is set as well. Also, all anonymous get the `test` namespace. There are also some shims defined for modules that are not an AMD module.
-
-```js
-grunt.initConfig({
-  amd_tamer: {
-    options: {
-      base: 'src/',
-      namespace: 'test',
-      shim: {
-        a: {
-          exports: 'a.test'
-        },
-        b: {
-          deps: ['a'],
-          exports: 'b'
-        }
-      }
-    },
-    files: {
-      'dest/file.js': ['src/**/*.js'],
-    }
-  }
-})
-```
-
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-0.1.12 Fixes a bug with source map mappings where an input source maps wasn't specified  
+0.1.12 Fixes a bug with source map mappings where an input source maps wasn't specified
 0.1.11 Add banner and footer option
 0.1.10 Hotfix for including sourcemaps + Additional unit test  
 0.1.9  Initial sourcemap support + Added blacklist option  
