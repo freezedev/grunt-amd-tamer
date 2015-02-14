@@ -51,7 +51,7 @@ The separator between files. Usually, you don't need to change this
 Type: `Boolean`
 Default value: `true`
 
-Mimics CommonJS behavior with `index.js` files. An anonymous module that with `index.js` as its filename will resolve to its parent folder, e.g. `folder/index` is `folder`.
+Mimics CommonJS behavior with `index.js` files. An anonymous module that with `index.js` as its filename will resolve to its parent folder, e.g. a module named `folder/index` will become `folder`.
 
 #### options.base
 Type: `String`
@@ -67,7 +67,7 @@ If set to true, generated module names and shims are wrapped in double quotes in
 
 #### options.namespace
 Type: `String`
-Default value: `null
+Default value: `null`
 
 Prepends a namespace to each module name, e.g. if `test` is set as the namespace, `mymodule` becomes `test/mymodule`.
 
@@ -93,7 +93,7 @@ Allows to manually define module which will be appended to the destination file.
 
 #### options.sourceMap
 Type: `Boolean`
-Default value: `true
+Default value: `true`
 
 Generates a source map for the generated files
 
@@ -162,8 +162,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-0.1.12 Fixes a bug with source map mappings where an input source maps wasn't
- specified
+0.1.12 Fixes a bug with source map mappings where an input source maps wasn't specified  
 0.1.11 Add banner and footer option
 0.1.10 Hotfix for including sourcemaps + Additional unit test  
 0.1.9  Initial sourcemap support + Added blacklist option  
