@@ -186,8 +186,8 @@ Append something to the resulting file, like a source map reference.
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-0.1.12 Fixes a bug with source map mappings where an input source maps wasn't specified
-0.1.11 Add banner and footer option
+0.1.12 Fixes a bug with source map mappings where an input source maps wasn't specified  
+0.1.11 Add banner and footer option  
 0.1.10 Hotfix for including sourcemaps + Additional unit test  
 0.1.9  Initial sourcemap support + Added blacklist option  
 0.1.8  Added process option  
