@@ -181,19 +181,39 @@ module.exports = function(grunt) {
         }
 
         source = options.process(source, moduleName);
-        
+
         if (options.sourceMap) {
           var prevSourceMap;
-          if (grunt.file.exists(filepath + '.map')) {
-            prevSourceMap = grunt.file.readJSON(filepath + '.map');
+          var sourceMapFile = filepath + '.map';
+          var file;
+
+          var sourceMapComment = '//# sourceMappingURL=';
+          var hasSourceMap = source.indexOf(sourceMapComment) >= 0;
+
+          if (hasSourceMap) {
+            var smMatch = source.match(/\/\# sourceMappingURL=(.*)/);
+            file = smMatch[1];
+
+            var basename = path.basename(filepath);
+            var sourceMapPath = filepath.split(basename)[0];
+
+            sourceMapFile = [sourceMapPath, file].join(path.sep);
           }
-  
+
+          if (grunt.file.exists(sourceMapFile)) {
+            prevSourceMap = grunt.file.readJSON(sourceMapFile);
+          }
+
+          if (hasSourceMap) {
+            source = source.split(sourceMapComment + file)[0];
+          }
+
           var fileSource = source;
-  
+
           if (index !== filtered.length - 1 && !prevSourceMap) {
             fileSource += grunt.util.normalizelf(options.separator);
           }
-  
+
           sourceMapConcat.add(filepath, source, prevSourceMap);
         }
 
