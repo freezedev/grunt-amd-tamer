@@ -7,6 +7,7 @@
 This module helps you manage your AMD modules. It converts anonymous modules into named ones, allows to add shims,
 add namespaces to modules, concatenate them all into a single file or leave them in separate files.
 In a way it's similar to the RequireJS bundler, but `grunt-amd-tamer` allows for more fine-grained control.
+There is also CoffeeScript support.
 
 Are you rather working with CommonJS modules? Check out [grunt-commonjs-tamer](http://github.com/freezedev/grunt-commonjs-tamer)
 
