@@ -118,7 +118,7 @@ The separator between files. Usually, you don't need to change this
 Type: `Boolean`
 Default value: `true`
 
-Mimics CommonJS behavior with `index.js` files. An anonymous module that with `index.js` as its filename will resolve to its parent folder, e.g. a module named `folder/index` will become `folder`.
+Mimics CommonJS behavior with `index.js` files. An anonymous module with `index.js` as its filename will resolve to its parent folder, e.g. a module named `folder/index` will become `folder`.
 
 #### options.base
 Type: `String`
