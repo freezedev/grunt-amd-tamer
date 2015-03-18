@@ -46,10 +46,18 @@ module.exports = function(grunt) {
       var src = '';
       
       if (options.banner) {
+        var banner = '';
+        
         if (typeof options.banner === 'function') {
-          src += options.banner(f.dest);
+          banner = options.banner(f.dest);
         } else {
-          src += options.banner;
+          banner = options.banner;
+        }
+        
+        src += banner;
+        
+        if (options.sourceMap) {
+          sourceMapConcat.add('grunt_amd_tamer-generated-banner.js', banner, null);
         }
       }
 
