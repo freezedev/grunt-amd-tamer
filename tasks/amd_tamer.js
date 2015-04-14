@@ -81,7 +81,7 @@ module.exports = function(grunt) {
         var extension = path.extname(filepath);
         var isCoffeeScript = (extension === '.coffee');
 
-        var moduleName = filepath.split(extension)[0];
+        var moduleName = path.join(path.dirname(filepath), path.basename(filepath,extension));
         if (options.base && moduleName.indexOf(options.base) === 0) {
           moduleName = moduleName.split(options.base)[1];
         }
