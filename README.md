@@ -189,6 +189,7 @@ Append something to the resulting file, like a source map reference.
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+```
 0.1.13 sourceMap comments are not being handled in source files  
 0.1.12 Fixes a bug with source map mappings where an input source maps wasn't specified  
 0.1.11 Add banner and footer option  
@@ -203,6 +204,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 0.1.2  Namespace options hotfix  
 0.1.1  Added options for namespace, basename and processName  
 0.1.0  Initial version  
+```
 
 ## License
 Public domain (Unlicense), but can also be licensed under the terms of the MIT 
