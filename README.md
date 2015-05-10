@@ -190,6 +190,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 ```
+0.1.14 Fixes banner handling in source maps
 0.1.13 sourceMap comments are not being handled in source files  
 0.1.12 Fixes a bug with source map mappings where an input source maps wasn't specified  
 0.1.11 Add banner and footer option  
