@@ -22,6 +22,12 @@ var grunt = require('grunt');
     test.ifError(value)
 */
 
+var normalizeRead = function(filename) {
+  var text = grunt.file.read(filename);
+
+  return text.replace(/\s/g, '');
+};
+
 exports.amd_tamer = {
   setUp: function(done) {
     // setup here if necessary
@@ -30,8 +36,8 @@ exports.amd_tamer = {
   javascript_simple: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/javascript_simple.js');
-    var expected = grunt.file.read('test/expected/javascript_simple.js');
+    var actual = normalizeRead('tmp/javascript_simple.js');
+    var expected = normalizeRead('test/expected/javascript_simple.js');
     test.equal(actual, expected, 'Simple JavaScript test');
 
     test.done();
@@ -39,8 +45,8 @@ exports.amd_tamer = {
   javascript_dots: function(test) {
     test.expect(1);
     
-    var actual = grunt.file.read('tmp/javascript_dots.js');
-    var expected = grunt.file.read('test/expected/javascript_dots.js');
+    var actual = normalizeRead('tmp/javascript_dots.js');
+    var expected = normalizeRead('test/expected/javascript_dots.js');
     test.equal(actual, expected, 'JavaScript files with dots in file and module names');
     
     test.done();
@@ -48,8 +54,8 @@ exports.amd_tamer = {
   javascript_namespace: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/javascript_namespace.js');
-    var expected = grunt.file.read('test/expected/javascript_namespace.js');
+    var actual = normalizeRead('tmp/javascript_namespace.js');
+    var expected = normalizeRead('test/expected/javascript_namespace.js');
     test.equal(actual, expected, 'Namespace JavaScript test');
 
     test.done();
@@ -57,8 +63,8 @@ exports.amd_tamer = {
   javascript_nodefine: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/javascript_nodefine.js');
-    var expected = grunt.file.read('test/expected/javascript_nodefine.js');
+    var actual = normalizeRead('tmp/javascript_nodefine.js');
+    var expected = normalizeRead('test/expected/javascript_nodefine.js');
     test.equal(actual, expected, 'No-define JavaScript test');
 
     test.done();
@@ -66,8 +72,8 @@ exports.amd_tamer = {
   javascript_noindex: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/javascript_noindex.js');
-    var expected = grunt.file.read('test/expected/javascript_noindex.js');
+    var actual = normalizeRead('tmp/javascript_noindex.js');
+    var expected = normalizeRead('test/expected/javascript_noindex.js');
     test.equal(actual, expected, 'No-index JavaScript test');
 
     test.done();
@@ -75,8 +81,8 @@ exports.amd_tamer = {
   javascript_noindex_namespace: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/javascript_noindex_namespace.js');
-    var expected = grunt.file.read('test/expected/javascript_noindex_namespace.js');
+    var actual = normalizeRead('tmp/javascript_noindex_namespace.js');
+    var expected = normalizeRead('test/expected/javascript_noindex_namespace.js');
     test.equal(actual, expected, 'No-index namespaced JavaScript test');
 
     test.done();
@@ -84,8 +90,8 @@ exports.amd_tamer = {
   javascript_shim: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/javascript_shim.js');
-    var expected = grunt.file.read('test/expected/javascript_shim.js');
+    var actual = normalizeRead('tmp/javascript_shim.js');
+    var expected = normalizeRead('test/expected/javascript_shim.js');
     test.equal(actual, expected, 'Shimmed JavaScript test');
 
     test.done();
@@ -93,8 +99,8 @@ exports.amd_tamer = {
   javascript_processname: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/javascript_processname.js');
-    var expected = grunt.file.read('test/expected/javascript_processname.js');
+    var actual = normalizeRead('tmp/javascript_processname.js');
+    var expected = normalizeRead('test/expected/javascript_processname.js');
     test.equal(actual, expected, 'Processname JavaScript test');
 
     test.done();
@@ -102,8 +108,8 @@ exports.amd_tamer = {
   coffeescript_default: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/coffeescript_default.coffee');
-    var expected = grunt.file.read('test/expected/coffeescript_default.coffee');
+    var actual = normalizeRead('tmp/coffeescript_default.coffee');
+    var expected = normalizeRead('test/expected/coffeescript_default.coffee');
     test.equal(actual, expected, 'CoffeeScript default test');
 
     test.done();
@@ -111,8 +117,8 @@ exports.amd_tamer = {
   coffeescript_nodefine: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/coffeescript_nodefine.coffee');
-    var expected = grunt.file.read('test/expected/coffeescript_nodefine.coffee');
+    var actual = normalizeRead('tmp/coffeescript_nodefine.coffee');
+    var expected = normalizeRead('test/expected/coffeescript_nodefine.coffee');
     test.equal(actual, expected, 'CoffeeScript nodefine test');
 
     test.done();
@@ -120,8 +126,8 @@ exports.amd_tamer = {
   coffeescript_shim: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/coffeescript_shim.coffee');
-    var expected = grunt.file.read('test/expected/coffeescript_shim.coffee');
+    var actual = normalizeRead('tmp/coffeescript_shim.coffee');
+    var expected = normalizeRead('test/expected/coffeescript_shim.coffee');
     test.equal(actual, expected, 'Shimmed CoffeeScript test');
 
     test.done();
