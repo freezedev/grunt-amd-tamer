@@ -18,6 +18,7 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       separator: grunt.util.linefeed,
+      tab: '\t',
       normalizeIndexFile: true,
       base: null,
       doubleQuotes: false,
@@ -157,18 +158,18 @@ module.exports = function(grunt) {
                 }
               }
       
-              source += '\n';
+              source += options.separator;
       
               if (exports) {
                 if (isCoffeeScript) {
-                  source += '\ndo (root) ->';
+                  source += options.separator + 'do (root) ->';
                 } else {
-                  source += '\n(function(root) {';
+                  source += options.separator + '(function(root) {';
                 }
               }
-              source += '\n';
+              source += options.separator;
               if (exports) {
-                source += '\t';
+                source += options.tab;
               }
       
               if (isCoffeeScript) {
