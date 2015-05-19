@@ -115,7 +115,13 @@ grunt.initConfig({
 Type: `String`
 Default value: `grunt.util.linefeed`
 
-The separator between files. Usually, you don't need to change this
+The separator between files. Usually, you don't need to change this.
+
+#### options.tab
+Type: `String`
+Default value: `\t`
+
+Tab value which will be used for intendation.
 
 #### options.normalizeIndexFile
 Type: `Boolean`
